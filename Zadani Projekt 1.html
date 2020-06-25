@@ -1,0 +1,378 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html><head>
+<title>Wiki</title>
+<link rel="SHORTCUT ICON" href="https://wis.fit.vutbr.cz/images/favicon.ico" type="image/x-icon">
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-2">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="Zadani%20Projekt%201_soubory/style.css" type="text/css">
+<link rel="stylesheet" href="Zadani%20Projekt%201_soubory/cwk-css.css" type="text/css">
+<script type="text/javascript">
+var ClockMonths = new Array("ledna", "února", "března", "dubna", "května", "června",
+"července", "srpna", "září", "října", "listopadu", "prosince");
+var ClockElm;
+var ClockDiff=0;
+
+function ClockInit()
+{
+    if (!document.getElementById) return;
+    ClockElm = document.getElementById('clock');
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    var datefmt = /^(\d\d?)\. ([^ ]+) (\d{4}) (\d\d):(\d\d):(\d\d)$/;
+    var datep = datefmt.exec(ClockElm.innerHTML);
+    if (datep) {
+	var SrvClock = new Date();
+	SrvClock.setDate(datep[1]);
+	for (var i = 0; i<12; i++) {
+	    if (datep[2] == ClockMonths[i]) {
+		SrvClock.setMonth(i);
+	    }
+	}
+	SrvClock.setYear(datep[3]);
+	SrvClock.setHours(datep[4]);
+	SrvClock.setMinutes(datep[5]);
+	SrvClock.setSeconds(datep[6]);
+	ClockDiff = 500 + SrvClock.getTime()-ClockTm.getTime();
+    }
+    setInterval(UpdateClock, 1000);
+}
+
+function UpdateClock()
+{
+    var hr,min,sec,day,mon,year;
+
+    if (!ClockElm || !ClockElm.innerHTML) return;
+    var ClockTm = new Date();
+    ClockTm.setMilliseconds(ClockDiff+ClockTm.getMilliseconds());
+    if (ClockTm.getFullYear) year = ClockTm.getFullYear();
+    else year = ClockTm.getYear+1900;
+    mon = ClockTm.getMonth();
+    day = ClockTm.getDate();
+    hr = ClockTm.getHours();
+    min = ClockTm.getMinutes();
+    sec = ClockTm.getSeconds();
+    ClockElm.innerHTML = day+'. '+ClockMonths[mon]+' '+year+' '+(hr<=9?'0':'')+hr+':'+(min<=9?'0':'')+min+':'+(sec<=9?'0':'')+sec; 
+}
+
+function filter_empty(name)
+{
+    var i;
+    for (i = 0; i < document[name].elements.length; i++) {
+	var o = document.forms[name].elements[i];
+	if (o.type != 'text' && o.type != 'select-one') continue;
+	if (o.value == '') o.disabled = true;
+    }
+    return true;
+}
+</script>
+</head>
+<body onload="ClockInit()">
+<table class="noprint" style="background-color: #3498db" width="100%" cellspacing="0" cellpadding="0" border="0">
+<tbody><tr><td><a href="https://www.fit.vut.cz/"><img class="FITlogo" src="Zadani%20Projekt%201_soubory/fitnewz.png" alt="FIT"></a></td>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/index.php">home</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/study.php">studia</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/courses.php">předměty</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stabs" href="https://wis.fit.vutbr.cz/FIT/st/study-v.php">termíny</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/reg.php">registrace</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/admin.php">hesla</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/other.php">ostatní</a></th>
+<th style="width: 12.5%; border-left: 1px solid #fff"><a class="stab" href="https://wis.fit.vutbr.cz/FIT/st/logoff.php?logoff=1">odhlásit</a></th>
+<td valign="middle">&nbsp;<a style="color:white; text-decoration: none" href="https://wis.fit.vutbr.cz/FIT/st/cwk.php.en?title=Projekt1&amp;csid=714721&amp;id=13376">english</a>&nbsp;</td></tr>
+</tbody></table>
+<table width="100%" cellpadding="4" bgcolor="white"><tbody><tr><td>Login xkeprt03, <b>Keprt Ondřej</b>, 1. ročník BITP, prezenční, FIT<br>
+Ak. rok 2019/2020 studium č. 1: změna zařazení - programu, formy, oboru, ročníku<p></p></td><td align="right"><a href="https://wis.fit.vutbr.cz/FIT/st/course-sl.php?id=714721">Zpět na termíny</a>&nbsp;</td></tr></tbody></table>
+<table width="100%" height="75%" cellpadding="0" bordercolor="#808080" border="0" bgcolor="#ececec"><tbody><tr><td style="padding-top: 8px; border-top: solid 1px #888888; border-bottom: solid 1px #0063a5" valign="top"><table style="min-width: 700px"><tbody><tr valign="top"><td>
+<div class="leftpane">
+    <div class="home">
+[[<a class="internal" href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Main_Page&amp;csid=714721&amp;id=13376" id="wiki__top" accesskey="h" title="[H]">IZP Home</a>]]
+    </div>
+    <div id="toolbar" class="toolbar">
+   <div class="tb_main">
+
+<p>
+
+Navigace
+</p>
+
+<ul>
+<li class="level1"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Main_Page&amp;csid=714721&amp;id=13376" class="internal" title="Hlavní stránka">Hlavní stránka</a></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=recent&amp;csid=714721&amp;id=13376" class="internal" title="Projekt1">Poslední změny</a></span></li>
+<li class="level1"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Help:Main_Page&amp;csid=714721&amp;id=13376" class="internal" title="Help:Hlavní stránka">Nápověda</a></li>
+</ul>
+
+<p>Stránka</p><div class="tb_box"><form action="cwk.php?title=Projekt1&amp;csid=714721&amp;id=13376" class="search" id="form_search" method="get"><div class="searchform">
+<input type="hidden" name="csid" value="714721">
+<input type="hidden" name="id" value="13376">
+<input type="text" autocomplete="off" id="qsearch" accesskey="f" name="search" class="forminput" title="Enter search text">
+<input type="submit" name="dogo" value="Zobrazit" class="button" title="Zobrazit"> <input type="submit" name="dosearch" value="Hledat" class="button" title="Hledat">
+</div></form>
+</div>
+
+
+<p>
+
+Nástroje
+</p>
+
+<ul>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=backlink&amp;csid=714721&amp;id=13376" class="internal" title="Projekt1">Odkazuje sem</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=upload&amp;ns=IZP&amp;csid=714721&amp;id=13376" class="internal" title="Projekt1">Nahrát soubor</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=fileinfo&amp;ns=IZP&amp;list=1&amp;csid=714721&amp;id=13376" class="internal" title="Projekt1">Seznam souborů</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=index&amp;csid=714721&amp;id=13376" class="internal" title="Projekt1">Seznam stránek</a></span></li>
+<li class="level1"><span class="curid"><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=history&amp;csid=714721&amp;id=13376" class="internal" title="Projekt1">Historie stránky</a></span></li>
+</ul>
+</div>   </div>
+</div>
+</td><td width="90%">
+<div class="rightpane">
+    <div class="bar" id="bar_top">
+    <ul class="bar_menu">
+<li><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=show&amp;rev=0&amp;csid=714721&amp;id=13376" class="selected" title="Stránka" rel="nofollow">Stránka</a></li><li><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=source&amp;rev=0&amp;csid=714721&amp;id=13376" title="Zdroj" rel="nofollow">Zdroj</a></li><li><a href="https://wis.fit.vutbr.cz/FIT/st/cwk.php?title=Projekt1&amp;action=subscribe&amp;csid=714721&amp;id=13376" title="Sledovat" rel="nofollow">Sledovat</a></li>  </ul>
+    </div>
+    <div class="page">
+<!-- wikipage start -->
+<h1>Projekt 1 - Práce s textem</h1><div class="toc"><table class="toc"><tbody><tr><th colspan="7">Obsah</th></tr>
+<tr><td>1</td><td colspan="5"> <a class="internal" href="#Motivační_příklad">Motivační příklad</a></td></tr><tr><td>2</td><td colspan="5"> <a class="internal" href="#Popis_projektu">Popis projektu</a></td></tr><tr><td>3</td><td colspan="5"> <a class="internal" href="#Detailní_specifikace">Detailní specifikace</a></td></tr><tr><td>&nbsp;</td><td>3.1</td><td colspan="4"> <a class="internal" href="#Překlad_a_odevzdání_zdrojového_souboru">Překlad a odevzdání zdrojového souboru</a></td></tr><tr><td>&nbsp;</td><td>3.2</td><td colspan="4"> <a class="internal" href="#Syntax_spuštění">Syntax spuštění</a></td></tr><tr><td>&nbsp;</td><td>3.3</td><td colspan="4"> <a class="internal" href="#Implementační_detaily">Implementační detaily</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>3.3.1</td><td colspan="3"> <a class="internal" href="#Vstupní_telefonní_seznam">Vstupní telefonní seznam</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>3.3.2</td><td colspan="3"> <a class="internal" href="#Kritérium_nalezení_kontaktu">Kritérium nalezení kontaktu</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>3.3.3</td><td colspan="3"> <a class="internal" href="#Výstup_programu">Výstup programu</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3.3.3.1</td><td colspan="2"> <a class="internal" href="#Kontakt_nenalezen">Kontakt nenalezen</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>3.3.3.2</td><td colspan="2"> <a class="internal" href="#Kontakt(y)_nalezen(y)">Kontakt(y) nalezen(y)</a></td></tr><tr><td>&nbsp;</td><td>&nbsp;</td><td>3.3.4</td><td colspan="3"> <a class="internal" href="#Omezení_v_projektu">Omezení v projektu</a></td></tr><tr><td>&nbsp;</td><td>3.4</td><td colspan="4"> <a class="internal" href="#Neočekávané_chování">Neočekávané chování</a></td></tr><tr><td>&nbsp;</td><td>3.5</td><td colspan="4"> <a class="internal" href="#Příklady_vstupů_a_výstupů">Příklady vstupů a výstupů</a></td></tr><tr><td>4</td><td colspan="5"> <a class="internal" href="#Hodnocení">Hodnocení</a></td></tr><tr><td>&nbsp;</td><td>4.1</td><td colspan="4"> <a class="internal" href="#Priority_funkcionality">Priority funkcionality</a></td></tr><tr><td>&nbsp;</td><td>4.2</td><td colspan="4"> <a class="internal" href="#Prémiové_hodnocení">Prémiové hodnocení</a></td></tr></tbody></table></div>
+
+<h2><span><a name="Motivační_příklad">Motivační příklad</a></span></h2>
+
+<p>
+
+Snad všichni známe telefonní seznam v chytrých telefonech. Vyhledávání 
+tam většinou funguje i za pomocí numerické klávesnice. Uživatel zadává 
+posloupnosti číslic, ale každým stiskem klávesy myslí jeden ze znaků, 
+které daná čislice reprezentuje (například číslo 5 reprezentuje samotnou
+ 5 či jedno z písmen j, k nebo l). Telefon pak filtruje telefonní seznam
+ podle dané posloupnosti, přičemž se snaží v seznamu najít libovolný 
+kontakt, jehož jméno nebo telefonní číslo obsahuje sekvenci 
+(nepřerušenou nebo rozdělenou) zadaných znaků.
+</p>
+
+<h2><span><a name="Popis_projektu">Popis projektu</a></span></h2>
+
+<p>
+
+Cílem projektu je vytvořit program, který by emuloval zjednodušený 
+algoritmus hledání kontaktů zadaných pomocí posloupnosti číslic. Vstupem
+ programu je posloupnost číslic. Výstup programu bude obsahovat seznam 
+kontaktů, které odpovídají zadanému číselnému filtru.
+</p>
+
+<h2><span><a name="Detailní_specifikace">Detailní specifikace</a></span></h2>
+
+<p>
+
+Program implementujte ve zdrojovém souboru <i>proj1.c</i>. Vstupní data budou čtena ze standardního vstupu (stdin), výstup bude tisknut na standardní výstup (stdout).
+</p>
+
+<h3><span><a name="Překlad_a_odevzdání_zdrojového_souboru">Překlad a odevzdání zdrojového souboru</a></span></h3>
+
+<p>
+
+Odevzdání: Odevzdejte zdrojový soubor <i>proj1.c</i> prostřednictvím informačního systému.
+</p>
+
+<p>
+
+Překlad: Program překládejte s následujícími argumenty
+</p>
+<pre>$&nbsp;gcc&nbsp;-std=c99&nbsp;-Wall&nbsp;-Wextra&nbsp;-Werror&nbsp;proj1.c&nbsp;-o&nbsp;proj1</pre>
+
+<h3><span><a name="Syntax_spuštění">Syntax spuštění</a></span></h3>
+
+<p>
+
+Program se spouští v následující podobě: (./proj1 značí umístění a název programu):
+</p>
+<pre>./proj1&nbsp;CISLO</pre>
+
+<p>
+
+CISLO zde představuje hledané kritérium, sekvenci číslic 0 až 9, které reprezentují sekvenci hledaných znaků.
+</p>
+
+<p>
+
+Pokud je program spuštěn bez argumentů, program se bude chovat, jako by hledanému kritériu odpovídal každý kontakt se seznamu.
+</p>
+
+<h3><span><a name="Implementační_detaily">Implementační detaily</a></span></h3>
+
+<h4><span><a name="Vstupní_telefonní_seznam">Vstupní telefonní seznam</a></span></h4>
+
+<p>
+
+Telefonní seznam jsou ASCII textová data. Každý záznam o kontaktu 
+obsahuje dva řádky: jméno osoby a jeho telefonní číslo. Každý řádek 
+obsahuje maximálně 100 znaků, jinak se jedná o neplatná data. Seznam 
+kontaktů je neuspořádaný. U všech dat nezáleží na velikosti písmen (tzv.
+ case insensitive). Program musí podporovat alespoň 42 kontaktů.
+</p>
+
+<h4><span><a name="Kritérium_nalezení_kontaktu">Kritérium nalezení kontaktu</a></span></h4>
+
+<p>
+
+Pro zjednodušení budeme v tomto projektu uvažovat hledání <b>nepřerušené posloupnosti</b>
+ zadaných znaků/číslic v telefonním kontaktu. Nepřerušenou posloupností 
+znaků se myslí takový podřetězec, u kterého se na každé pozici vyskytuje
+ znak, který odpovídá jednomu ze znaků, které reprezentuje číslice na 
+stejné pozici v zadaném řetězci. Každá číslice kromě sebe sama 
+reprezentuje ještě následující znaky: 2 (abc), 3 (def), 4 (ghi), 5 
+(jkl), 6 (mno), 7 (pqrs), 8 (tuv), 9 (wxyz), 0 (+). 
+</p>
+
+<h4><span><a name="Výstup_programu">Výstup programu</a></span></h4>
+
+<p>
+
+Výstup programu může být dvojího druhu:
+</p>
+
+<ul>
+<li class="level1">žádný kontakt nenalezen,</li>
+<li class="level1">nalezen jeden a více kontaktů.</li>
+</ul>
+
+<h5><span><a name="Kontakt_nenalezen">Kontakt nenalezen</a></span></h5>
+<pre>Not found</pre>
+
+<p>
+
+Pokud v telefonním seznamu neexistuje kontakt, u něhož by nějaká část odpovídala hledanému řetězci <tt>CISLO</tt>, vytiskne program toto hlášení.
+</p>
+
+<h5><span><a name="Kontakt(y)_nalezen(y)">Kontakt(y) nalezen(y)</a></span></h5>
+
+<p>
+
+Každý kontakt, který odpovídá hledanému kritériu, program vytiskne na jeden řádek ve formátu <tt>JMENO, TELCISLO</tt>,
+ kde JMENO je jméno kontaktu z telefonního seznamu a TELCISLO je záznam o
+ telefonním čísle. Program tiskne všechny kontakty, které kritériu 
+odpovídají. Na pořadí řádků nezáleží. Stejně tak nezáleží ani na 
+velikosti písmen.
+</p>
+
+<h4><span><a name="Omezení_v_projektu">Omezení v projektu</a></span></h4>
+
+<p>
+
+Je zakázané použít následující funkce:
+</p>
+
+<ul>
+<li class="level1">volání z rodiny malloc a free - práce s dynamickou pamětí není v tomto projektu zapotřebí,</li>
+<li class="level1">volání z rodiny fopen, fclose, fscanf, ... - práce se soubory (dočasnými) není v tomto projektu žádoucí,</li>
+<li class="level1">volání qsort, lsearch, bsearch a hsearch - cílem je zamyslet se nad algoritmizací a strukturou dat.</li>
+</ul>
+
+<h3><span><a name="Neočekávané_chování">Neočekávané chování</a></span></h3>
+
+<p>
+
+Na chyby za běhu programu reagujte obvyklým způsobem: Na neočekávaná 
+vstupní data, formát vstupních dat nebo chyby při volání funkcí reagujte
+ přerušením programu se stručným a výstižným chybovým hlášením na 
+příslušný výstup a odpovídajícím návratovým kódem. Hlášení budou v 
+kódování ASCII česky nebo anglicky.
+</p>
+
+<h3><span><a name="Příklady_vstupů_a_výstupů">Příklady vstupů a výstupů</a></span></h3>
+
+<p>
+
+Pomocný soubor telefonního seznamu:
+</p>
+<pre>$ cat seznam.txt
+Petr Dvorak
+603123456
+Jana Novotna
+777987654
+Bedrich Smetana ml.
+541141120
+</pre>
+
+<p>
+
+Příklad hledání (pro demonstraci jsou nalezená písmena ve jméně jako velká):
+</p>
+<pre>$ ./proj1 &lt;seznam.txt
+petr dvorak, 603123456
+jana novotna, 777987654
+bedrich smetana ml., 541141120
+</pre>
+<pre>$ ./proj1 12 &lt;seznam.txt
+petr dvorak, 603123456
+bedrich smetana ml., 541141120
+</pre>
+<pre>$ ./proj1 686 &lt;seznam.txt
+jana nOVOtna, 777987654
+</pre>
+<pre>$ ./proj1 38 &lt;seznam.txt
+pETr DVorak, 603123456
+bedrich smETana ml., 541141120
+</pre>
+<pre>$ ./proj1 111 &lt;seznam.txt
+Not found
+</pre>
+
+<h2><span><a name="Hodnocení">Hodnocení</a></span></h2>
+
+<p>
+
+Na výsledném hodnocení mají hlavní vliv následující faktory:
+</p>
+
+<ul>
+<li class="level1">přeložitelnost zdrojového souboru,</li>
+<li class="level1">formát zdrojového souboru (členění, zarovnání, komentáře, vhodně zvolené identifikátory),</li>
+<li class="level1">dekompozice problému na podproblémy (vhodné funkce, vhodná délka funkcí a parametry funkcí),</li>
+<li class="level1">správná volba datových typů, případně tvorba nových typů,</li>
+<li class="level1">správná funkcionalita vyhledání kláves a</li>
+<li class="level1">ošetření chybových stavů.</li>
+</ul>
+
+<h3><span><a name="Priority_funkcionality">Priority funkcionality</a></span></h3>
+
+<ol>
+<li class="level1">Vyhledání kontaktů, jejichž telefonní čísla začínají zadaným číslem.</li>
+<li class="level1">Vyhledání kontaktů, jejichž jména začínají znaky, které zadané číslo reprezentuje.</li>
+<li class="level1">(prémiové) Hledání přerušených posloupností znaků. 
+Program najde i takové kontakty, u který mezi každými dvěma nalezenými 
+znaky může být libovolná posloupnost jiných znaků. Důležité je, že 
+nalezený řetězec (jména nebo telefonního čísla) musí obsahovat všechny 
+znaky, které číslovky reprezentují, a ve stejném pořadí.</li>
+</ol>
+
+<h3><span><a name="Prémiové_hodnocení">Prémiové hodnocení</a></span></h3>
+
+<p>
+
+Prémiové hodnocení je dobrovolné a lze za něj získat bonusové body. 
+Podmínkou pro udělení prémiových bodů je úspěšná obhajoba projektu a 
+výborné vypracování standardního zadání. Výsledné hodnocení je plně v 
+kompetenci vyučujího, kterému bude projekt obhajován a který bude 
+projekt hodnotit. Výše prémiových bodů závisí také na sofistikovanosti 
+řešení.
+</p>
+<div class="clearer"></div>   <!-- wikipage end -->
+    </div>
+
+    <div class="footer">
+      <div class="wiki_top"><a href="#top" onclick="window.scrollTo(0, 0)" title="Nahoru">Nahoru</a>
+      </div>
+      <div class="meta">
+        <div class="user">
+    </div>
+      <div class="doc">Id stránky: 155, verze: 11659, dne: 2019-11-04 09:59:26 uložil: smrcka</div>
+      </div>
+    </div>
+</div>
+</td></tr>
+</tbody></table>
+</td></tr></tbody></table><div class="noprint">
+<address>&#169;Fakulta informačních technologií VUT v Brně, Božetěchova 2, 612 66 Brno<br>Připomínky zasílejte na adresu <a href="mailto:lampa@fit.vut.cz">lampa@fit.vut.cz</a></address></div>
+
+
+</body></html>
