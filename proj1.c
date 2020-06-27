@@ -1,18 +1,18 @@
+// Projekt 1
+//verze z: 11.11.2019
+// Ondrej Keprt, xkeprt03
+
+
 #include <stdio.h>
 #include <string.h>
-#include <ctype.h>
-
-#define pocet_kontaktu 1000
-#define pocet_znaku 100
-
-void prevod(int i,char original[pocet_kontaktu][pocet_znaku],char kopie[pocet_kontaktu][pocet_znaku]);
+#include <stdlib.h>
 
 int main (int argc, char *argv[])
 {
 	//overeni poctu argumentu
 	if (argc > 2)
 	{
-		fprintf(stderr,"zadej pouze jedno hledane cislo\n");
+		printf("zadej pouze jedno hledane cislo\n");
 		return 1;
 	}
 
@@ -20,12 +20,12 @@ int main (int argc, char *argv[])
 	char c;	//pomocna promena pro nacitani
 	int kontakt = 0;
 	int znak = 0;
-	int pocet_zaznamu = 0;
-	char jmeno[pocet_kontaktu][pocet_znaku];
-	char cislo[pocet_kontaktu][pocet_znaku];
+	int radek_zaznamu = 0;
+	char jmeno[1000][100];
+	char cislo[1000][100];
 	while ((c=fgetc(stdin)) != EOF)
 	{
-		if ((pocet_zaznamu % 2) == 1)
+		if ((radek_zaznamu % 2) == 1)
 			{
 				if (c != '\n')
 				{
@@ -34,7 +34,7 @@ int main (int argc, char *argv[])
 				}
 				else
 				{
-					pocet_zaznamu++;
+					radek_zaznamu++;
 					kontakt++;
 					znak = 0;
 				}
@@ -43,76 +43,157 @@ int main (int argc, char *argv[])
 			{
 				if (c != '\n')
 				{
-					jmeno[kontakt][znak] = tolower(c);
+					jmeno[kontakt][znak] = c;
 					znak++;
 				}
 				else
 				{
 					//printf("%s\n", zaznam[radek]);
-					pocet_zaznamu++;
+					radek_zaznamu++;
 					znak = 0;
 				}
 			}
 	}
-pocet_zaznamu = (pocet_zaznamu/2)+1;
+radek_zaznamu = (radek_zaznamu/2)+1;
 
 //vypis bez zadani hledaneho cisla
+kontakt = 0;
 if (argc == 1)
 	{
 
-			for (kontakt = 0; kontakt < pocet_zaznamu-1;kontakt++)
+			for (int i =1; i < radek_zaznamu;i++)
 				{
 					printf("%s, %s\n",jmeno[kontakt],cislo[kontakt]);
+					kontakt++;
 				}
 		return 0;
 	}
 
 
 // prevod jmena na cisla
-char kontakt_cisla [pocet_kontaktu][pocet_znaku];
-char cislo_cisla [pocet_kontaktu][pocet_znaku];
-for (int i = 0; i < pocet_zaznamu;i++)
-{
-prevod(i,jmeno,kontakt_cisla);
-prevod(i,cislo,cislo_cisla);
+char kontakt_cisla [1000][100];
 znak = 0;
-}
-
+for (int i = 0; i < radek_zaznamu;i++)
+	{
+		while (jmeno[i][znak] !='\0')
+		{
+			switch (jmeno[i][znak])
+			{
+				case ' ':
+				kontakt_cisla[i][znak] = ' ';
+				break;			// znak mezery
+				case 'a':
+				case 'A':
+				case 'b':
+				case 'B':
+				case 'c':
+				case 'C':
+					kontakt_cisla[i][znak] = '2';
+					break;
+				case 'd':
+				case 'D':
+				case 'f':
+				case 'F':
+				case 'e':
+				case 'E':
+					kontakt_cisla[i][znak] = '3';
+				break;
+				case 'g':
+				case 'G':
+				case 'H':
+				case 'h':
+				case 'i':
+				case 'I':
+					kontakt_cisla[i][znak] = '4';
+					break;
+				case 'j':
+				case 'J':
+				case 'k':
+				case 'K':
+				case 'l':
+				case 'L':
+					kontakt_cisla[i][znak] = '5';
+				break;
+				case 'm':
+				case 'M':
+				case 'n':
+				case 'N':
+				case 'o':
+				case 'O':
+					kontakt_cisla[i][znak] = '6';
+					break;
+				case 'p':
+				case 'P':
+				case 'q':
+				case 'Q':
+				case 'r':
+				case 'R':
+				case 's':
+				case 'S':
+					kontakt_cisla[i][znak] = '7';
+				break;
+				case 't':
+				case 'T':
+				case 'u':
+				case 'U':
+				case 'v':
+				case 'V':
+					kontakt_cisla[i][znak] = '8';
+					break;
+				case 'w':
+				case 'W':
+				case 'x':
+				case 'X':
+				case 'y':
+				case 'Y':
+				case 'z':
+				case 'Z':
+					kontakt_cisla[i][znak] = '9';
+				 break;
+				case '+':
+				 kontakt_cisla[i][znak] = '0';
+				 break;
+			 }
+			znak++;
+		}
+		znak = 0;
+	}
 
 // pole kterre rika, jake zaznami jsme nalezly
-int vypsat[pocet_zaznamu];
- for (kontakt = 0; kontakt < pocet_zaznamu;kontakt++)
+int vypsat[radek_zaznamu];
+ for (int i = 0;i < radek_zaznamu;i++)
  {
-	 vypsat[kontakt] = 0;
+	 vypsat[i] = 0;
  }
 
  //porovnani
  char *p;
+ char *s;
  int nalezeno = 0;
-for (kontakt = 0; kontakt < pocet_zaznamu;kontakt++)
+for (int i = 0; i < radek_zaznamu;i++)
 		{
 			//porovnani cisel
-			p = strstr(cislo_cisla[kontakt], argv[1]);
+			p = strstr(cislo[i], argv[1]);
 			if (p != NULL)
 				{
-					vypsat[kontakt] = 1;
+					vypsat[i] = 1;
 					nalezeno = 1;
 				}
 
 				// porovnani jmen
-				p = strstr(kontakt_cisla[kontakt], argv[1]);
-				if (p != NULL)
+				s = strstr(kontakt_cisla[i], argv[1]);
+				if (s != NULL)
 					{
-						vypsat[kontakt] = 1;
+						vypsat[i] = 1;
 						nalezeno = 1;
 					}
 		}
 //vypis nalezenych kontaktu
-	for (int kontakt = 0; kontakt <pocet_zaznamu;kontakt++)
+	for (int i = 0; i <radek_zaznamu;i++)
 	{
-		if (vypsat[kontakt])
+		if (vypsat[i])
 		{
-			printf("%s, %s  // %s // %s\n",jmeno[kontakt],cislo[kontakt],kontakt_cisla[kontakt],cislo_cisla[kontakt]);
+			printf("%s, %s                   %s\n",jmeno[i],cislo[i],kontakt_cisla[i]);
 		}
 	}
 
@@ -122,69 +203,4 @@ for (kontakt = 0; kontakt < pocet_zaznamu;kontakt++)
 		printf("Not found\n");
 	}
 	return 0;
-}
-
-void prevod (int i, char original[pocet_kontaktu][pocet_znaku],char kopie[pocet_kontaktu][pocet_znaku])
-{
-	int znak = 0;
-		while (original[i][znak] !='\0')
-		{
-			switch (original[i][znak])
-			{
-				case ' ':
-				kopie[i][znak] = ' ';
-				break;			// znak mezery
-				case 'a':
-				case 'b':
-				case 'c':
-					kopie[i][znak] = '2';
-					break;
-				case 'd':
-				case 'f':
-				case 'e':
-					kopie[i][znak] = '3';
-				break;
-				case 'g':
-				case 'h':
-				case 'i':
-					kopie[i][znak] = '4';
-					break;
-				case 'j':
-				case 'k':
-				case 'l':
-					kopie[i][znak] = '5';
-				break;
-				case 'm':
-				case 'n':
-				case 'o':
-					kopie[i][znak] = '6';
-					break;
-				case 'p':
-				case 'q':
-				case 'r':
-				case 's':
-					kopie[i][znak] = '7';
-				break;
-				case 't':
-				case 'u':
-				case 'v':
-					kopie[i][znak] = '8';
-					break;
-				case 'w':
-				case 'x':
-				case 'y':
-				case 'z':
-					kopie[i][znak] = '9';
-				 break;
-				case '+':
-				kopie[i][znak] = '0';
-				 break;
-				default:
-					kopie[i][znak] = original[i][znak];
-					break;
-			 }
-			znak++;
-		}
-
-
 }
